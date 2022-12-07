@@ -6,5 +6,5 @@ mod server;
 mod log;
 
 fn main() {
-    server::start_server(String::from("127.0.0.1"), 8080, 4);
+    server::start_server(String::from("127.0.0.0"), 8080, 4);
 }
