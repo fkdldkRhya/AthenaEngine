@@ -81,7 +81,7 @@ fn main() {
 > 
 > You can call the Body structure and template functions. 
 > 
-> Rust file
+> < Rust file >
 > ```Rust
 > // Response event setting
 > server::EVENT.event_response = Some(Box::new(|request| {
@@ -125,6 +125,8 @@ fn main() {
 >   return response;
 > }));
 > ```
+>
+> < HTML file >
 
 
 
