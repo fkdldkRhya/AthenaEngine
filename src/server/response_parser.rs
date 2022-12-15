@@ -21,24 +21,24 @@ pub mod response_parser {
 
     /// Response 데이터
     pub struct Response {
-        pub(crate) is_success: IsResponseDataCreateSuccess,
-        pub(crate) response_code: Option<HttpStateCode>,
-        pub(crate) http_version: Option<HttpVersion>,
-        pub(crate) headers: Option<HashMap<String, String>>,
-        pub(crate) cookies: Option<Vec<ResponseCookies>>,
-        pub(crate) body: Option<ResponseBody>
+        pub is_success: IsResponseDataCreateSuccess,
+        pub response_code: Option<HttpStateCode>,
+        pub http_version: Option<HttpVersion>,
+        pub headers: Option<HashMap<String, String>>,
+        pub cookies: Option<Vec<ResponseCookies>>,
+        pub body: Option<ResponseBody>
     }
 
     /// Response 쿠키 데이터
     pub struct ResponseCookies {
-        pub(crate) name : String,
-        pub(crate) value : String,
-        pub(crate) path : String
+        pub name : String,
+        pub value : String,
+        pub path : String
     }
 
     /// Response body 데이터
     pub struct ResponseBody {
-        pub(crate) body_str: Option<String>
+        pub body_str: Option<String>
     }
 
     /// 페이지 HTML 정보 불러오기 작업 성공 여부 Enum

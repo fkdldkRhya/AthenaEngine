@@ -11,19 +11,19 @@ pub mod page_manager {
 
     /// 모든 페이지 Struct
     pub struct AllPages {
-        pub(crate) pages: Option<HashMap<String, PageInfo>>
+        pub pages: Option<HashMap<String, PageInfo>>
     }
 
     /// 페이지 정보 Struct
     pub struct PageInfo {
-        pub(crate) file_path: String,
-        pub(crate) is_access: bool
+        pub file_path: String,
+        pub is_access: bool
     }
 
     /// 페이지 HTML 정보 Struct
     pub struct PageFileReadInfo {
-        pub(crate) value : Option<String>,
-        pub(crate) is_success : IsPageFileReadSuccess
+        pub value : Option<String>,
+        pub is_success : IsPageFileReadSuccess
     }
 
     /// 페이지 HTML 정보 불러오기 작업 성공 여부 Enum

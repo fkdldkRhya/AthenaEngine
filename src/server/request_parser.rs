@@ -26,14 +26,14 @@ pub mod request_parser {
 
     /// Request 데이터
     pub struct Request {
-        pub(crate) method : Option<Method>,
-        pub(crate) target : Option<String>,
-        pub(crate) host : Option<String>,
-        pub(crate) http_version : Option<HttpVersion>,
-        pub(crate) http_header : Option<HashMap<String, String>>,
-        pub(crate) cookies: Option<HashMap<String, String>>,
-        pub(crate) params: Option<HashMap<String, String>>,
-        pub(crate) body: Option<String>
+        pub method : Option<Method>,
+        pub target : Option<String>,
+        pub host : Option<String>,
+        pub http_version : Option<HttpVersion>,
+        pub http_header : Option<HashMap<String, String>>,
+        pub cookies: Option<HashMap<String, String>>,
+        pub params: Option<HashMap<String, String>>,
+        pub body: Option<String>
     }
 
 
