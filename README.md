@@ -67,7 +67,6 @@ fn main() {
 }
 ```
 
-
 ## License
 MIT License
 
