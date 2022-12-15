@@ -1,6 +1,8 @@
 use std::collections::HashMap;
+use std::io::Read;
+use crate::server::response_parser::response_parser::ResponseBody;
 use crate::server::page_manager::page_manager;
-use crate::server::page_manager::page_manager::PageInfo;
+use crate::server::page_manager::page_manager::{GetPageTemplateVar, page_template_parser, PageInfo};
 use crate::server::response_parser::response_parser::{default_response_writer, IsResponseDataCreateSuccess, Response, ResponseCookies};
 
 // Module - Server
@@ -8,6 +10,7 @@ mod server;
 mod log;
 
 fn main() {
+
     // All pages hashmap
     let mut all_page_list: HashMap<String, PageInfo> = HashMap::new();
     // 'hello.html' page setting
@@ -29,24 +32,38 @@ fn main() {
         }));
         // Response event setting
         server::EVENT.event_response = Some(Box::new(|request| {
-            // Cookies setting
-            let mut cookies_list : Vec<ResponseCookies> = Vec::new();
-            let cookie : ResponseCookies = ResponseCookies {
-                name: "test-my-cookie".to_string(),
-                value: "test-my-cookie-value".to_string(),
-                path: "/".to_string(),
-            };
-            cookies_list.push(cookie);
             // Default response packet
-            let response : Response = default_response_writer(&request, Some(cookies_list), None);
+            let mut response : Response = default_response_writer(&request, None, None);
 
-            // Get response value
-            if response.is_success == IsResponseDataCreateSuccess::SUCCESS {
-                match &response.headers {
-                    None => {}
-                    Some(value) => {
-                        // Print all headers
-                        println!("{:?}", value);
+            // Parse html
+            match &response.body {
+                None => {}
+                Some(response_body) => {
+                    match &response_body.body_str {
+                        None => {}
+                        Some(html) => { // Get default body
+                            // Add variable
+                            let mut var : HashMap<String, GetPageTemplateVar> = HashMap::new();
+                            var.insert(String::from("variable_1"), Box::new(|| {
+                                return String::from("Hello my var!");
+                            }));
+                            // Parsing html
+                            let change_body : String = page_template_parser(html.clone(), var);
+                            // Apply original response body
+                            let response_body : ResponseBody = ResponseBody {
+                                body_str: Some(change_body),
+                            };
+                            let mut new_response : Response = Response {
+                                is_success: response.is_success,
+                                response_code: response.response_code,
+                                http_version: response.http_version,
+                                headers: response.headers,
+                                cookies: response.cookies,
+                                body: Some(response_body),
+                            };
+
+                            return new_response;
+                        }
                     }
                 }
             }
