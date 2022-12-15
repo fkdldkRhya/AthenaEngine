@@ -6,7 +6,6 @@ license = "MIT"
 version = "0.1.0"
 edition = "2021"
 repository = "https://github.com/fkdldkRhya/AthenaEngine.git"
-include = ["src/*.rs", "Cargo.toml"]
 exclude = ["src/main.rs"]
 readme = "README.md"
 documentation = "https://github.com/fkdldkRhya/AthenaEngine/blob/master/README.md"
