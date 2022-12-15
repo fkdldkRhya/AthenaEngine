@@ -3,6 +3,6 @@
 //! 'Athena_Engine' is an engine that makes web servers simple.
 
 /// Module - Server
-mod server;
+pub mod server;
 /// Module - Log
-mod log;
+pub mod log;
