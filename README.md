@@ -127,15 +127,18 @@ fn main() {
 > ```
 >
 > < HTML file >
-> ```
+> ```HTML
 > <!DOCTYPE html>
 > <html lang="en">
 > <head>
->   <meta charset="UTF-8">
->   <title>Title</title>
+>     <meta charset="UTF-8">
+>     <title>Title</title>
 > </head>
 > <body>
 > <#>var.variable_1
+> <#>control.for 0,10
+> print 1 -- 10
+> <#>control.for_end
 > </body>
 > </html>
 > ```
