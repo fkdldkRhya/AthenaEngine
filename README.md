@@ -85,12 +85,14 @@ fn main() {
 > 
 > **This grammar requires open (\r\n) characters and should not be indented (Tab) when using dedicated grammar.**
 >
-> < Grammar >
+> < Grammar > 
+> 
 > Variable notation: <#>var.(Variable name) 
 > 
 > Recurring statement notation: <#>control.for (start num),(end num) 
 > 
 > Repeating statement termination notation: <#>control.for_end
+> 
 > 
 > < Rust file >
 > ```Rust
