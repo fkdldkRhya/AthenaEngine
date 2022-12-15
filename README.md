@@ -13,6 +13,12 @@ urlencoding = "2.1.2"
 
 ## How to use?
 ```Rust
+use std::collections::HashMap;
+use AthenaEngine::server;
+use AthenaEngine::server::page_manager::page_manager;
+use AthenaEngine::server::page_manager::page_manager::PageInfo;
+use AthenaEngine::server::response_parser::response_parser::{default_response_writer, IsResponseDataCreateSuccess, Response, ResponseCookies};
+
 fn main() {
     // All pages hashmap
     let mut all_page_list: HashMap<String, PageInfo> = HashMap::new();
