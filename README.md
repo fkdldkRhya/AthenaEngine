@@ -79,8 +79,7 @@ fn main() {
 # Expansion module description
 ## server::page_manager::page_template_parser (function) 
 > 
-> You can call the Body structure and template functions. 
-> You can also use the external template engine template engine without using the function.
+> You can invoke body structure and template functions. You can also use an external template engine template engine without using this feature.
 > 
 > **WARNING! This grammar is not perfect. The programmer may not behave as intended.** 
 > 
@@ -157,8 +156,20 @@ fn main() {
 > </html>
 > ```
 
+## log::log_writer, log::log_more_text_writer (function)
+>
+> The dedicated Log Output Manager lets you print logs beautifully.
+> ```
+> // Error log
+> println!("{}", log_text_writer(error.to_string(), String::from("Log Generating entity"), LogTypeTag::WARNING));
+> println!("{}", log_more_text_writer(error.to_string(), String::from("Log Generating entity"), LogTypeTag::WARNING), String::from("More text"));
+>
+> [Output Results]
+> 2022/12/16 01-29-51 INFO  [MAIN/SERVER] [IP:127.0.0.1] Run request EVENT handler.
+> 2022/12/16 01-38-17 INFO  [MAIN/SERVER/RESPONSE_PARSER] Default response packet creation succeeded.
+> ```
 
-
+    
 # License
 MIT License
 
