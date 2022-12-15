@@ -80,6 +80,7 @@ fn main() {
 ## server::page_manager::page_template_parser (function) 
 > 
 > You can call the Body structure and template functions. 
+> You can also use the external template engine template engine without using the function.
 > 
 > **WARNING! This grammar is not perfect. The programmer may not behave as intended.** 
 > 
