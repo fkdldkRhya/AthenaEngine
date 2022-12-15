@@ -9,7 +9,7 @@ urlencoding = "2.1.2"
 ```
 
 ## How to use?
-```
+```Rust
 fn main() {
     // All pages hashmap
     let mut all_page_list: HashMap<String, PageInfo> = HashMap::new();
