@@ -1,7 +1,7 @@
 # AthenaEngine
 Web server engine for rust
 
-### How to use ?
+## How to use?
 ```
 fn main() {
     // All pages hashmap
