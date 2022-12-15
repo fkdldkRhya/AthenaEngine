@@ -3,6 +3,7 @@ Web server template engine for rust
 
 ### How to use ?
 '''
+
 fn main() {
     // All pages hashmap
     let mut all_page_list: HashMap<String, PageInfo> = HashMap::new();
@@ -55,4 +56,5 @@ fn main() {
     // Open server
     server::start_server(String::from("127.0.0.1"), 4444);
 }
+    
 '''
