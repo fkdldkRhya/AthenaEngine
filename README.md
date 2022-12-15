@@ -2,7 +2,7 @@
 Web server template engine for rust
 
 ### How to use ?
-'''
+'
 
 fn main() {
     // All pages hashmap
@@ -57,4 +57,4 @@ fn main() {
     server::start_server(String::from("127.0.0.1"), 4444);
 }
     
-'''
+'
