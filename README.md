@@ -137,7 +137,7 @@ fn main() {
 >                       is_success: response.is_success,
 >                       response_code: response.response_code,
 >                       http_version: response.http_version,
->                       headers: response.headers,
+>                       headers: Some(header_new),
 >                       cookies: response.cookies,
 >                       body: Some(response_body),
 >                   };
