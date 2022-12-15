@@ -81,12 +81,15 @@ fn main() {
 > 
 > You can call the Body structure and template functions. 
 > 
-> **WARNING! This grammar is not perfect. The programmer may not behave as intended.**
+> **WARNING! This grammar is not perfect. The programmer may not behave as intended.** 
+> 
 > **This grammar requires open (\r\n) characters and should not be indented (Tab) when using dedicated grammar.**
 >
 > < Grammar >
-> Variable notation: <#>var.(Variable name)
-> Recurring statement notation: <#>control.for (start num),(end num)
+> Variable notation: <#>var.(Variable name) 
+> 
+> Recurring statement notation: <#>control.for (start num),(end num) 
+> 
 > Repeating statement termination notation: <#>control.for_end
 > 
 > < Rust file >
