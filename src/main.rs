@@ -49,15 +49,30 @@ fn main() {
                             }));
                             // Parsing html
                             let change_body : String = page_template_parser(html.clone(), var);
+                            let change_body_len : String = change_body.clone().len().to_string();
                             // Apply original response body
                             let response_body : ResponseBody = ResponseBody {
                                 body_str: Some(change_body),
                             };
+
+                            // Edit header
+                            let mut header : Option<HashMap<String, String>> = response.headers;
+                            let mut header_new : HashMap<String, String>;
+                            match header {
+                                None => {
+                                    header_new = HashMap::new();
+                                }
+                                Some(header) => {
+                                    header_new = header;
+                                    header_new.insert("Content-Length".to_string(), change_body_len);
+                                }
+                            }
+
                             let mut new_response : Response = Response {
                                 is_success: response.is_success,
                                 response_code: response.response_code,
                                 http_version: response.http_version,
-                                headers: response.headers,
+                                headers: Some(header_new),
                                 cookies: response.cookies,
                                 body: Some(response_body),
                             };
