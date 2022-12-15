@@ -18,6 +18,9 @@ fn main() {
     unsafe {
         page_manager::ALL_PAGES.pages = Some(all_page_list);
     }
+    
+    
+    // Client connection event setting
     unsafe {
         // Request event setting
         server::EVENT.event_request = Some(Box::new(|request| {
