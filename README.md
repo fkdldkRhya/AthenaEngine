@@ -127,6 +127,18 @@ fn main() {
 > ```
 >
 > < HTML file >
+> ```
+> <!DOCTYPE html>
+> <html lang="en">
+> <head>
+>   <meta charset="UTF-8">
+>   <title>Title</title>
+> </head>
+> <body>
+> <#>var.variable_1
+> </body>
+> </html>
+> ```
 
 
 
