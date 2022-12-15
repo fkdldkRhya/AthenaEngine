@@ -76,8 +76,8 @@ fn main() {
 }
 ```
 
-## Expansion module description
-# server::page_manager::page_template_parser (function) 
+# Expansion module description
+## server::page_manager::page_template_parser (function) 
 > 
 > You can call the Body structure and template functions.
 > ```
@@ -86,7 +86,7 @@ fn main() {
 
 
 
-## License
+# License
 MIT License
 
 Copyright (c) 2022 CHOI SI-HUN
