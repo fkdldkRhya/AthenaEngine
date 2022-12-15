@@ -84,46 +84,46 @@ fn main() {
 > Rust file
 > ```Rust
 > // Response event setting
-        server::EVENT.event_response = Some(Box::new(|request| {
-            // Default response packet
-            let mut response : Response = default_response_writer(&request, None, None);
+> server::EVENT.event_response = Some(Box::new(|request| {
+> // Default response packet
+> let mut response : Response = default_response_writer(&request, None, None);
+> 
+> // Parse html
+> match &response.body {
+>     None => {}
+>     Some(response_body) => {
+>         match &response_body.body_str {
+>             None => {}
+>             Some(html) => { // Get default body
+>                 // Add variable
+>                 let mut var : HashMap<String, GetPageTemplateVar> = HashMap::new();
+>                 var.insert(String::from("variable_1"), Box::new(|| {
+>                     return String::from("Hello my var!");
+>                 }));
+>                 // Parsing html
+>                 let change_body : String = page_template_parser(html.clone(), var);
+>                 // Apply original response body
+>                 let response_body : ResponseBody = ResponseBody {
+>                     body_str: Some(change_body),
+>                 };
+>                 let mut new_response : Response = Response {
+>                     is_success: response.is_success,
+>                     response_code: response.response_code,
+>                     http_version: response.http_version,
+>                     headers: response.headers,
+>                     cookies: response.cookies,
+>                     body: Some(response_body),
+>                 };
+> 
+>                 return new_response;
+>             }
+>         }
+>     }
+> }
 
-            // Parse html
-            match &response.body {
-                None => {}
-                Some(response_body) => {
-                    match &response_body.body_str {
-                        None => {}
-                        Some(html) => { // Get default body
-                            // Add variable
-                            let mut var : HashMap<String, GetPageTemplateVar> = HashMap::new();
-                            var.insert(String::from("variable_1"), Box::new(|| {
-                                return String::from("Hello my var!");
-                            }));
-                            // Parsing html
-                            let change_body : String = page_template_parser(html.clone(), var);
-                            // Apply original response body
-                            let response_body : ResponseBody = ResponseBody {
-                                body_str: Some(change_body),
-                            };
-                            let mut new_response : Response = Response {
-                                is_success: response.is_success,
-                                response_code: response.response_code,
-                                http_version: response.http_version,
-                                headers: response.headers,
-                                cookies: response.cookies,
-                                body: Some(response_body),
-                            };
-
-                            return new_response;
-                        }
-                    }
-                }
-            }
-
-            // Return response
-            return response;
-        }));
+> // Return response
+> return response;
+> }));
 > ```
 
 
