@@ -1,3 +1,6 @@
+[![crates.io](https://img.shields.io/crates/v/httparse.svg)](https://crates.io/crates/AthenaEngine)
+[![MIT licensed](https://img.shields.io/badge/license-MIT-blue.svg)](./LICENSE-MIT)
+
 # AthenaEngine
 Web server engine for rust
 
