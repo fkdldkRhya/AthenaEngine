@@ -77,7 +77,8 @@ fn main() {
 ```
 
 ## Expansion module description
-> #server::page_manager::page_template_parser (function)
+> &server::page_manager::page_template_parser (function) 
+> 
 > You can call the Body structure and template functions.
 > ```
 > dfsdasfsdf
