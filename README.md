@@ -159,7 +159,7 @@ fn main() {
 ## log::log_writer, log::log_more_text_writer (function)
 >
 > The dedicated Log Output Manager lets you print logs beautifully.
-> ```
+> ```Rust
 > // Error log
 > println!("{}", log_text_writer(error.to_string(), String::from("Log Generating entity"), LogTypeTag::WARNING));
 > println!("{}", log_more_text_writer(error.to_string(), String::from("Log Generating entity"), LogTypeTag::WARNING), String::from("More text"));
