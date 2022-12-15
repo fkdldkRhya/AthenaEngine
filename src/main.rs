@@ -1,43 +1,61 @@
-extern crate core;
-
 use std::collections::HashMap;
 use crate::server::page_manager::page_manager;
-use crate::server::response_parser::response_writer::{default_response_writer, Response};
-use crate::server::page_manager::page_manager::{AllPages, PageInfo, read_page};
-use crate::server::page_manager::page_manager::IsPageFileReadSuccess;
-use crate::server::response_parser::response_writer::IsResponseDataCreateSuccess;
+use crate::server::page_manager::page_manager::PageInfo;
+use crate::server::response_parser::response_parser::{default_response_writer, IsResponseDataCreateSuccess, Response, ResponseCookies};
 
 // Module - Server
 mod server;
 mod log;
 
 fn main() {
-    // 페이지 설정
-    let mut list: HashMap<String, PageInfo> = HashMap::new();
-    list.insert(String::from("/hello.html"), PageInfo { file_path: "A:\\AthenaEngine\\Rust\\hello.html".to_string(), is_access: true });
-    unsafe { page_manager::ALL_PAGES.pages = Some(list); }
-
+    // All pages hashmap
+    let mut all_page_list: HashMap<String, PageInfo> = HashMap::new();
+    // 'hello.html' page setting
+    let hello_page_info : PageInfo = PageInfo {
+        file_path: "A:\\AthenaEngine\\Rust\\hello.html".to_string(), // HTML file path
+        is_access: true // File accessibility
+    };
+    // '/hello.html' -> connection name
+    // Insert hello page
+    all_page_list.insert(String::from("/hello.html"), hello_page_info);
+    // All pages list setting
     unsafe {
+        page_manager::ALL_PAGES.pages = Some(all_page_list);
+    }
+    unsafe {
+        // Request event setting
         server::EVENT.event_request = Some(Box::new(|request| {
-
+            // Do
         }));
-
+        // Response event setting
         server::EVENT.event_response = Some(Box::new(|request| {
-            let response : Response = default_response_writer(&request, None, None);
-            /*
+            // Cookies setting
+            let mut cookies_list : Vec<ResponseCookies> = Vec::new();
+            let cookie : ResponseCookies = ResponseCookies {
+                name: "test-my-cookie".to_string(),
+                value: "test-my-cookie-value".to_string(),
+                path: "/".to_string(),
+            };
+            cookies_list.push(cookie);
+            // Default response packet
+            let response : Response = default_response_writer(&request, Some(cookies_list), None);
+
+            // Get response value
             if response.is_success == IsResponseDataCreateSuccess::SUCCESS {
                 match &response.headers {
                     None => {}
                     Some(value) => {
+                        // Print all headers
                         println!("{:?}", value);
                     }
                 }
             }
-             */
 
+            // Return response
             return response;
         }));
     }
 
-    server::start_server(String::from("192.168.0.25"), 2560);
+    // Open server
+    server::start_server(String::from("127.0.0.1"), 4444);
 }

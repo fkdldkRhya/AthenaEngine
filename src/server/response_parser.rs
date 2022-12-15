@@ -1,5 +1,6 @@
-pub mod response_writer {
+pub mod response_parser {
     use std::collections::HashMap;
+    use std::fmt::format;
     use std::io::Bytes;
     use chrono::{Datelike, DateTime, Timelike, Utc};
     use crate::log::{log_text_writer, LogTypeTag};
@@ -10,7 +11,7 @@ pub mod response_writer {
 
     /// 현재 파일 정보 반환
     fn get_this_name() -> String {
-        return String::from("main/server/response_writer");
+        return String::from("main/server/response_parser");
     }
 
 
@@ -24,8 +25,15 @@ pub mod response_writer {
         pub(crate) response_code: Option<HttpStateCode>,
         pub(crate) http_version: Option<HttpVersion>,
         pub(crate) headers: Option<HashMap<String, String>>,
-        pub(crate) cookies: Option<HashMap<String, String>>,
+        pub(crate) cookies: Option<Vec<ResponseCookies>>,
         pub(crate) body: Option<ResponseBody>
+    }
+
+    /// Response 쿠키 데이터
+    pub struct ResponseCookies {
+        pub(crate) name : String,
+        pub(crate) value : String,
+        pub(crate) path : String
     }
 
     /// Response body 데이터
@@ -199,15 +207,19 @@ pub mod response_writer {
     /// # Examples
     ///
     /// ```
-    /// default_response_writer(Some(HTTP_200), Some(HTTP_1_1), None, None, None, None)
+    /// default_response_writer(&request, None, None)
     /// ```
     ///
     /// # Argument
     /// request : HTTP 응답 데이터
     ///
+    /// cookies : 응답 헤더에 추가할 쿠키
+    ///
+    /// input_header : 응답 헤더 추가 작성
+    ///
     /// # Return
     /// Response 구조체
-    pub fn default_response_writer(request : &Request, cookies : Option<HashMap<String, String>>, input_header : Option<HashMap<String, String>>) -> Response {
+    pub fn default_response_writer(request : &Request, cookies : Option<Vec<ResponseCookies>>, input_header : Option<HashMap<String, String>>) -> Response {
         // 반환 데이터 초기화
         let mut response : Response = Response {
             is_success: IsResponseDataCreateSuccess::SUCCESS,
@@ -354,6 +366,17 @@ pub mod response_writer {
                                     for (response_header_key, response_header_value) in response_header {
                                         let line : String = format!("{}: {}\r\n", response_header_key, response_header_value);
                                         header.push_str(&line);
+                                    }
+
+                                    // 쿠키 설정
+                                    match &response.cookies {
+                                        Some(cookies) => {
+                                            for cookie in cookies {
+                                                let line = String::from(format!("Set-Cookie: {}={}; Path={}\r\n", cookie.name, cookie.value, cookie.path));
+                                                header.push_str(&line);
+                                            }
+                                        },
+                                        None => {}
                                     }
 
                                     response_str = response_format(http_version, response_code, header, response.body);

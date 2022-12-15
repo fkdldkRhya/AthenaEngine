@@ -1,10 +1,14 @@
+use std::collections::HashMap;
 use std::io::prelude::*;
 use std::net::TcpStream;
 use std::net::TcpListener;
 use std::time::Duration;
+use std::sync::mpsc::{self, Receiver, Sender};
+
+use chrono::{DateTime, Local};
 
 use crate::server::request_parser::request_parser::{Request, request_parser};
-use crate::server::response_parser::response_writer::{Response, response_parser};
+use crate::server::response_parser::response_parser::{Response, response_parser};
 use crate::log::{log_more_text_writer, log_text_writer, LogTypeTag};
 
 /// Public module - request_parser
@@ -13,8 +17,6 @@ pub mod request_parser;
 pub mod response_parser;
 /// Public module - page_manager
 pub mod page_manager;
-/// Public module - session_manager
-mod session_manager;
 
 
 /// 현재 파일 정보 반환
@@ -47,7 +49,7 @@ pub static mut EVENT: ClientEvent = ClientEvent {
 
 /// Thread 실행 인자
 pub struct ThreadTaskArgs {
-    pub tcp_stream : TcpStream,
+    pub tcp_stream : TcpStream
 }
 
 
