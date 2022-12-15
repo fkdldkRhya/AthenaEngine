@@ -164,9 +164,9 @@ fn main() {
 > println!("{}", log_text_writer(error.to_string(), String::from("Log Generating entity"), LogTypeTag::WARNING));
 > println!("{}", log_more_text_writer(error.to_string(), String::from("Log Generating entity"), LogTypeTag::WARNING), String::from("More text"));
 >
-> [Output Results]
-> 2022/12/16 01-29-51 INFO  [MAIN/SERVER] [IP:127.0.0.1] Run request EVENT handler.
-> 2022/12/16 01-38-17 INFO  [MAIN/SERVER/RESPONSE_PARSER] Default response packet creation succeeded.
+> // [Output Results]
+> // 2022/12/16 01-29-51 INFO  [MAIN/SERVER] [IP:127.0.0.1] Run request EVENT handler.
+> // 2022/12/16 01-38-17 INFO  [MAIN/SERVER/RESPONSE_PARSER] Default response packet creation succeeded.
 > ```
 
     
