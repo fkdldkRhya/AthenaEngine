@@ -1,6 +1,13 @@
 # AthenaEngine
 Web server engine for rust
 
+## External library
+```
+[dependencies]
+chrono = "0.4.23"
+urlencoding = "2.1.2"
+```
+
 ## How to use?
 ```
 fn main() {
