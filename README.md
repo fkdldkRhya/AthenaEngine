@@ -149,8 +149,9 @@ fn main() {
 > </head>
 > <body>
 > <#>var.variable_1
+> </br>
 > <#>control.for 0,10
-> print 1 -- 10
+> print 1 -- 10 </br>
 > <#>control.for_end
 > </body>
 > </html>
