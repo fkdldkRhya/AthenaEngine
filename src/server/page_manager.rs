@@ -126,7 +126,7 @@ pub mod page_manager {
         let tag_control_for_end = String::from(format!("{}.for_end", tag_control));
 
         // HTML 반환
-        return if html.contains(&tag_root) && html.contains("\r\n") {
+        return if html.contains(&tag_root) && html.contains("\n") {
             let mut new_html = String::from(html.clone());
             // 변수 치환
             for (var_name, fun_value) in var {

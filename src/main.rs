@@ -15,7 +15,7 @@ fn main() {
     let mut all_page_list: HashMap<String, PageInfo> = HashMap::new();
     // 'hello.html' page setting
     let hello_page_info : PageInfo = PageInfo {
-        file_path: "A:\\AthenaEngine\\Rust\\hello.html".to_string(), // HTML file path
+        file_path: "A:\\My Project\\AthenaEngine\\hello.html".to_string(), // HTML file path
         is_access: true // File accessibility
     };
     // '/hello.html' -> connection name
