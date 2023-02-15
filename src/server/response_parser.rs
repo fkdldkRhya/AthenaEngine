@@ -268,8 +268,17 @@ pub mod response_parser {
                                 // 요청 페이지 읽기
                                 match &request.target {
                                     Some(request_page) => {
+                                        let path;
+
+                                        if request_page.contains("?") {
+                                            let mut split: Vec<&str> = request_page.split("?").collect();
+                                            path = String::from(split[0]);
+                                        }else {
+                                            path = String::from(request_page);
+                                        }
+
                                         // 페이지 정보 불러오기
-                                        let page_read_data : PageFileReadInfo = read_page(String::from(request_page));
+                                        let page_read_data : PageFileReadInfo = read_page(String::from(path));
                                         // 성공 여부 확인
                                         if page_read_data.is_success == IsPageFileReadSuccess::SUCCESS { // 페이지 읽기 성공
                                             response_code = HttpStateCode::HTTP_200;
